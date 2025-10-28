@@ -1,0 +1,44 @@
+[Unit]
+Description=ZipItJit - GIGA FILE ENCRYPTION MECHANISM
+After=network.target
+
+[Service]
+Type=simple
+User=zipitjit
+Group=zipitjit
+WorkingDirectory=/opt/zipitjit
+ExecStart=/opt/zipitjit/sv_ZIJ
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/zipitjit/temp
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ProtectKernelLogs=true
+ProtectProc=invisible
+ProcSubset=pid
+PrivateDevices=true
+DevicePolicy=closed
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+SystemCallArchitectures=native
+
+# Resource limits
+LimitNOFILE=1024
+LimitNPROC=64
+
+# Restart policy
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
