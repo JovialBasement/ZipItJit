@@ -234,6 +234,3 @@ sudo userdel zipitjit
 ## Access
 
 The service runs on: **https://0.0.0.0:9443/ZIJ**
-
-Behind your Cloudflare tunnel, it's accessible at:
-**https://www.creamyandmalicious.com/ZIJ**
